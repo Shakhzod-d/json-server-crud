@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { FaRegWindowClose } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchItems } from "../redux/thunk";
-import { deleteItem } from "../utils/deleteItem";
+import { deleteItem, fetchItems } from "../redux/thunk";
 
 const cartUrl = `http://localhost:3030/cart`;
 
@@ -13,22 +12,13 @@ const Cart = () => {
 
   const handleDelete = (id) => {
     const deleteUrl = `${cartUrl}/${id}`;
-    deleteItem(deleteUrl);
+    dispatch(deleteItem(deleteUrl, id));
     // dispatch(fetchItems(cartUrl, "GET_CART_ITEMS"));
-
-    // dispatch(fetchItems(`${cartUrl}`, "GET_CART_ITEMS"));
-
-    // UI taraflama update qilish usuli ammo yaxshi emas bu usul chunki 100% backend bilan ishlash kk
-    // setAllSneakers(allSneakers.filter((item) => item.id !== id));
   };
 
   useEffect(() => {
-    dispatch(fetchItems(`${cartUrl}`, "GET_CART_ITEMS"));
+    dispatch(fetchItems(cartUrl, "GET_CART_ITEMS"));
   }, []);
-
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
 
   return (
     <ul>
