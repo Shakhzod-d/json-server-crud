@@ -33,6 +33,28 @@ const saveItem = (state, newSneakers) => {
   };
 };
 
+const saveToFavorite = (state, newSneakers) => {
+  return {
+    ...state,
+    favorites: [...state.favorites, newSneakers],
+  };
+};
+
+const saveAllFavotires = (state, allSneakers) => {
+  return {
+    ...state,
+    favorites: allSneakers,
+  };
+};
+
+const saveToOrder = (state, orderSneakers) => {
+  console.log(orderSneakers);
+  return {
+    ...state,
+    order: orderSneakers,
+  };
+};
+
 const sneakersReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SAVE_ITEMS":
@@ -40,9 +62,16 @@ const sneakersReducer = (state = initialState, action) => {
     case "GET_CART_ITEMS":
       return getCartItems(state, action.payload);
     case "DELETE_ITEM":
-      return deleteItems(state, action.id);
+      return deleteItems(state, action.payload);
     case "SAVE_ITEM":
-      return saveItem(state, action.newSneakers);
+      return saveItem(state, action.payload);
+    case "SAVE_TO_FAVORITES":
+      return saveToFavorite(state, action.payload);
+    case "SAVE_ALL_FAVORITES":
+      return saveAllFavotires(state, action.payload);
+    case "SAVE_TO_ORDER":
+      //   console.log(action);
+      return saveToOrder(state, action.payload);
     default:
       return state;
   }

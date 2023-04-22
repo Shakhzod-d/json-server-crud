@@ -10,8 +10,13 @@ const AllSneakers = () => {
   const dispatch = useDispatch();
 
   const addToCart = (item) => {
-    dispatch(postNewSneakers(`${mainUrl}/cart`, item));
-    // dispatch(fetchItems(`${mainUrl}/cart`, "GET_CART_ITEMS"));
+    dispatch(postNewSneakers(`${mainUrl}/cart`, item, "SAVE_ITEM"));
+  };
+
+  const addToFavorites = (item) => {
+    dispatch(
+      postNewSneakers(`${mainUrl}/favorites`, item, "SAVE_TO_FAVORITES")
+    );
   };
 
   useEffect(() => {
@@ -19,18 +24,20 @@ const AllSneakers = () => {
   }, []);
 
   return (
-    <ul>
-      <h2>All Sneakers</h2>
-      {state.allSneakers?.map((item) => {
-        return (
-          <li key={item.id}>
-            {item.title}
-            <AiOutlineHeart onClick={() => {}} size={32} />
-            <AiOutlinePlusSquare onClick={() => addToCart(item)} size={32} />
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <ul>
+        <h2>All Sneakers</h2>
+        {state.allSneakers?.map((item) => {
+          return (
+            <li key={item.id}>
+              {item.title}
+              <AiOutlineHeart onClick={() => addToFavorites(item)} size={32} />
+              <AiOutlinePlusSquare onClick={() => addToCart(item)} size={32} />
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 };
 
