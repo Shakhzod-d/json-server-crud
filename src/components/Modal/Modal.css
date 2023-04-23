@@ -1,0 +1,49 @@
+.wrapper {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+
+  background-color: rgba(24, 24, 24, 0.811);
+}
+.modal {
+  width: 400px;
+  height: 100vh;
+
+  padding: 1rem;
+  background-color: #fff;
+
+  position: absolute;
+  right: 0;
+  z-index: 12;
+  box-shadow: -33px 10px 52px 8px rgba(255, 255, 255, 0.23);
+
+  animation-name: example;
+  animation-duration: 0.9s;
+}
+
+@keyframes example {
+  from {
+    background-color: red;
+    right: -480px;
+    top: 0px;
+  }
+
+  to {
+    background-color: #fff;
+    right: 0px;
+    top: 0px;
+  }
+}
+
+.clear {
+  width: 0;
+  height: 0;
+  display: none;
+}

@@ -4,7 +4,7 @@ import { fetchFavorites, fetchItems, postNewSneakers } from "../redux/thunk";
 
 const mainUrl = `http://localhost:3030/favorites`;
 
-const Favorite = () => {
+const Favorite = ({ handleOpen }) => {
   const { favorites } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -28,7 +28,8 @@ const Favorite = () => {
           return <li key={item.id}>{item.title}</li>;
         })}
       </ul>
-      <button onClick={makePayment}>make payment</button>
+      <button onClick={makePayment}>make payment</button> <br /> <br />
+      <button onClick={handleOpen}>Open modal</button>
     </div>
   );
 };
